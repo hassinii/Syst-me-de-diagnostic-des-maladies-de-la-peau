@@ -27,11 +27,11 @@ function ForgetPass() {
   };
 
   return (
-    <div className="container mt-5">
-      <h1>Formulaire</h1>
-      <form onSubmit={handleSubmit}>
+    <div className="container mt-5" style={styles.container}>
+      <img src="https://cdn-icons-png.flaticon.com/512/6146/6146587.png" style={styles.image} className='mx-auto d-block'/>
+      <form onSubmit={handleSubmit} style={styles.form}>
         <div className="form-group">
-          <label htmlFor="email">Adresse e-mail</label>
+          <label htmlFor="email" className='mb-2 label-control'>Adresse e-mail</label>
           <input
             type="text"
             className={`form-control ${isEmailValid ? '' : 'is-invalid'}`}
@@ -44,10 +44,30 @@ function ForgetPass() {
             <div className="invalid-feedback">L'adresse e-mail n'est pas valide.</div>
           )}
         </div>
-        <button type="submit" className="btn btn-primary">Soumettre</button>
+        <button type="submit" className="btn btn-primary justify-content-center" style={styles.button}>Soumettre</button>
       </form>
     </div>
   );
 }
 
 export default ForgetPass;
+
+
+const styles ={
+    container :{
+      width:500,
+      display:"flex",
+      alignItem:"center",
+      justifyContent:"center"
+    },
+    form:{
+      width:400,
+    },
+    button:{
+      marginTop:20,
+    },
+    image:{
+      width:40,
+      height:40,
+    }
+  };
