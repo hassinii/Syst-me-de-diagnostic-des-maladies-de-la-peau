@@ -28,10 +28,10 @@ function ForgetPass() {
 
   return (
     <div className="container mt-5">
-      <h1>Formulaire</h1>
+     
       <form onSubmit={handleSubmit}>
         <div className="form-group">
-          <label htmlFor="email">Adresse e-mail</label>
+          <label htmlFor="email">email address</label>
           <input
             type="text"
             className={`form-control ${isEmailValid ? '' : 'is-invalid'}`}
@@ -40,11 +40,12 @@ function ForgetPass() {
             ref={inputRef}
             onChange={(e) => setEmail(e.target.value)}
           />
+          
           {!isEmailValid && (
-            <div className="invalid-feedback">L'adresse e-mail n'est pas valide.</div>
+            <div className="invalid-feedback">{alert("The email address is not valid")}</div>
           )}
         </div>
-        <button type="submit" className="btn btn-primary">Soumettre</button>
+        <button type="submit" className="btn btn-primary">Submit</button>
       </form>
     </div>
   );
