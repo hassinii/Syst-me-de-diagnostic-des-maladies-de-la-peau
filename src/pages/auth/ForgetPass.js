@@ -32,23 +32,23 @@ function ForgetPass() {
       <img src="https://cdn-icons-png.flaticon.com/512/6146/6146587.png" style={styles.image} className='mx-auto d-block'/>
       <form onSubmit={handleSubmit} style={styles.form}>
         <div className="form-group">
-          <label htmlFor="email" className='mb-2 label-control'>Adresse e-mail</label>
+          <label htmlFor="email" className='mb-2 label-control'>E-mail adress</label>
     
           <input
             type="text"
             className={`form-control ${isEmailValid ? '' : 'is-invalid'}`}
             id="email"
-            placeholder="Adresse e-mail"
+            placeholder="your-email@example.com"
             ref={inputRef}
             onChange={(e) => setEmail(e.target.value)}
           />
           
           {!isEmailValid && (
-            <div className="invalid-feedback">{alert("The email address is not valid")}</div>
+            <div className="text-danger">The email address is not valid</div>
           )}
         </div>
 
-        <button type="submit" className="btn btn-primary justify-content-center" style={styles.button}>Soumettre</button>
+        <button className="btn btn-primary justify-content-center" style={styles.button}>Rest password</button>
       </form>
     </div>
   );
