@@ -27,11 +27,13 @@ function ForgetPass() {
   };
 
   return (
+
     <div className="container mt-5" style={styles.container}>
       <img src="https://cdn-icons-png.flaticon.com/512/6146/6146587.png" style={styles.image} className='mx-auto d-block'/>
       <form onSubmit={handleSubmit} style={styles.form}>
         <div className="form-group">
           <label htmlFor="email" className='mb-2 label-control'>Adresse e-mail</label>
+    
           <input
             type="text"
             className={`form-control ${isEmailValid ? '' : 'is-invalid'}`}
@@ -40,10 +42,12 @@ function ForgetPass() {
             ref={inputRef}
             onChange={(e) => setEmail(e.target.value)}
           />
+          
           {!isEmailValid && (
-            <div className="invalid-feedback">L'adresse e-mail n'est pas valide.</div>
+            <div className="invalid-feedback">{alert("The email address is not valid")}</div>
           )}
         </div>
+
         <button type="submit" className="btn btn-primary justify-content-center" style={styles.button}>Soumettre</button>
       </form>
     </div>

@@ -34,10 +34,10 @@ function PasswordChange() {
       <div className="row justify-content-center">
         <div className="col-md-6">
           <div className="card">
-            <div className="card-header bg-primary text-white">Changer le mot de passe</div>
+            <div className="card-header bg-primary text-white">Change the password</div>
             <div className="card-body">
               <div className="form-group">
-                <label>Nouveau mot de passe :</label>
+                <label>New password :</label>
                 <input
                   type="password"
                   className="form-control"
@@ -46,7 +46,7 @@ function PasswordChange() {
                 />
               </div>
               <div className="form-group">
-                <label>Confirmer le mot de passe :</label>
+                <label>Confirm password :</label>
                 <input
                   type="password"
                   className="form-control"
@@ -55,7 +55,7 @@ function PasswordChange() {
                 />
               </div>
               <button onClick={newPasswordAction} className="btn btn-primary">
-                Changer le mot de passe
+              Change password
               </button>
        
             </div>
