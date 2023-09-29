@@ -73,5 +73,6 @@ const styles ={
     image:{
       width:40,
       height:40,
+      marginTop:-25
     }
   };
