@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import axios from 'axios';
+import { useUserData } from '../../contexts/UserDataContext';
 
 function PasswordChange() {
+  const token = useParams()
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [message, setMessage] = useState('');
+  const {path} = useUserData()
 
   const handleNewPasswordChange = (e) => {
     setNewPassword(e.target.value);
@@ -27,6 +31,29 @@ function PasswordChange() {
       setMessage('Les mots de passe ne correspondent pas.');
     }
   };
+
+  const handleSubmitData = async() =>{
+    console.log(token);
+    try {
+      if(newPassword == confirmPassword){
+        const requestData = {
+          new_password : newPassword
+        }
+        const config ={
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+        const encodedToken = encodeURIComponent(token.token)
+        let response = await axios.post(`${path}/rest_password/${encodedToken}`,requestData,config)
+        if (response.status ===200) {
+          console.log("success");
+        }
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
   
 
   return (
@@ -54,7 +81,7 @@ function PasswordChange() {
                   onChange={handleConfirmPasswordChange}
                 />
               </div>
-              <button onClick={newPasswordAction} className="btn btn-primary">
+              <button onClick={handleSubmitData} className="btn btn-primary">
               Change password
               </button>
        

@@ -38,8 +38,8 @@ function App() {
           <div className='app-container'>
             <AnimatePresence>
             <Routes>
-            <Route path='/forgetPass' element={<ForgetPass/>} />
-            <Route path='/forgetPass/newpasseword' element={<NewPasseword/>} />
+            <Route path='/forget-password' element={<ForgetPass/>} />
+            <Route path='/change-password/:token' element={<NewPasseword/>} />
               <Route path='/' element={<Home />} />
 
               <Route path='/login' element={<Login />} />
