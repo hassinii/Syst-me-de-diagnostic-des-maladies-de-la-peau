@@ -128,7 +128,7 @@ function Login() {
             <input
               type="password"
               className="form-control mt-1"
-              placeholder="Enter password"
+              placeholder="gitpassword"
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
