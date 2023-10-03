@@ -72,7 +72,7 @@ function Patients() {
         for (const rdv_medecin of medecin.rdv) {
           const newRdv = {
             Id: rdvIdCounter,
-            Subject: rdv_medecin.patient.nom,
+            // Subject: rdv_medecin.patient.nom,
             StartTime: rdv_medecin.dateDebutRdv,
             EndTime: rdv_medecin.dateFinRdv,
             Color: '#FF5733'

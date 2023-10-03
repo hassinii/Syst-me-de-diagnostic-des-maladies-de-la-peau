@@ -34,6 +34,7 @@ function PasswordChange() {
 
   const handleSubmitData = async() =>{
     console.log(token);
+    console.log(newPassword)
     try {
       if(newPassword == confirmPassword){
         const requestData = {
@@ -45,7 +46,7 @@ function PasswordChange() {
           },
         }
         const encodedToken = encodeURIComponent(token.token)
-        let response = await axios.post(`${path}/rest_password/${encodedToken}`,requestData,config)
+        let response = await axios.post(`${path}/rest_password/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXNldF9wYXNzd29yZCI6ImVsYmFoamFjaGFyYWZlZGRpbmUiLCJleHAiOjE2OTYzNzMwMDcuOTE3ODY1NX0.XqZHR3MY4pqtQe7VoaoVsO4dUILAUIiLm3CbCxw9f28`,requestData,config)
         if (response.status ===200) {
           console.log("success");
         }
