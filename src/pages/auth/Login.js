@@ -5,7 +5,19 @@ import { Link, Navigate } from 'react-router-dom';
 import axios from 'axios';
 import "./style.css"
 import Transition from '../../constants/transition';
-
+import {
+  MDBBtn,
+  MDBContainer,
+  MDBRow,
+  MDBCol,
+  MDBCard,
+  MDBCardBody,
+  MDBCardImage,
+  MDBInput,
+  MDBIcon,
+  MDBCheckbox
+}
+from 'mdb-react-ui-kit';
 function Login() {
   const { login, isLoggedIn } = useAuth();
   const [username, setUsername] = useState('');
@@ -50,10 +62,10 @@ function Login() {
 
   return (
     <Transition>
-      <section className="vh-100 " style={{ height: '100vh', backgroundColor:'#2a52a2' }}>
+      {/* <section className="vh-100 " style={{ height: '100vh' }}>
         <div className="row d-flex justify-content-center align-items-center h-100" style={{ margin: "auto" }}>
           <div className="col-12 col-md-8 col-lg-6 col-xl-5">
-            <div className="card text-white" style={{ backgroundColor:'#eee',borderRadius: '1rem', height: '85vh', display: '-ms-flexbox', justifyContent: 'center' }}>
+            <div className="card text-white" style={{ borderRadius: '1rem', height: '85vh', display: '-ms-flexbox', justifyContent: 'center' }}>
               <div className="card-body p-5 text-center">
                 <div className="mb-md-5 mt-md-4 pb-5">
                   <h2 className="fw-bold text-dark mb-2 text-uppercase">Login</h2>
@@ -95,7 +107,41 @@ function Login() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
+
+<div className="Auth-form-container">
+      <div className="Auth-form">
+        <div className="Auth-form-content">
+          <h3 className="Auth-form-title">Sign In</h3>
+          <hr/>
+          <div className="form-group mt-3">
+            <label>Username</label>
+            <input
+              type="text"
+              className="form-control mt-1"
+              placeholder="username"
+              onChange={(e) => setUsername(e.target.value)}
+            />
+          </div>
+          <div className="form-group mt-3">
+            <label>Password</label>
+            <input
+              type="password"
+              className="form-control mt-1"
+              placeholder="Enter password"
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+          <div className="d-grid gap-2 mt-3">
+            <button type="button" className="btn btn-primary" onClick={handleSubmit}>
+              Login
+            </button>
+          </div>
+          <p className="small mb-2 pb-lg-2 text-dark mt-2"><Link to="/forgetPass">Forgot password?</Link></p>
+        </div>
+      </div>
+    </div>
+
     </Transition>
 
   );
