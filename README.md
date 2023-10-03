@@ -142,7 +142,3 @@ front-end
         └──
 ```
 
-## Author
-
-- [@CamaraCamara123](https://github.com/CamaraCamara123)
-
