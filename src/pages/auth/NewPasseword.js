@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Navigate, useParams } from 'react-router-dom';
+import {useParams } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 import { useUserData } from '../../contexts/UserDataContext';
@@ -8,7 +8,6 @@ function PasswordChange() {
   const token = useParams()
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [message, setMessage] = useState('');
   const {path} = useUserData()
 
   const handleNewPasswordChange = (e) => {
@@ -19,24 +18,12 @@ function PasswordChange() {
     setConfirmPassword(e.target.value);
   };
 
-  const newPasswordAction = (e) => {
-    e.preventDefault(); // Empêche la soumission du formulaire par défaut
-    
-    if (newPassword.trim() === '' || confirmPassword.trim() === '') {
-      setMessage('Veuillez remplir tous les champs.');
-    } else if (newPassword === confirmPassword) {
-      // Ajoutez ici la logique pour changer le mot de passe.
-      setMessage('Mot de passe changé avec succès.');
-    } else {
-      setMessage('Les mots de passe ne correspondent pas.');
-    }
-  };
 
   const handleSubmitData = async() =>{
     console.log(token);
     console.log(newPassword)
     try {
-      if(newPassword == confirmPassword){
+      if(newPassword === confirmPassword){
         const requestData = {
           new_password : newPassword
         }
@@ -46,9 +33,10 @@ function PasswordChange() {
           },
         }
         const encodedToken = encodeURIComponent(token.token)
-        let response = await axios.post(`${path}/rest_password/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXNldF9wYXNzd29yZCI6ImVsYmFoamFjaGFyYWZlZGRpbmUiLCJleHAiOjE2OTYzNzMwMDcuOTE3ODY1NX0.XqZHR3MY4pqtQe7VoaoVsO4dUILAUIiLm3CbCxw9f28`,requestData,config)
+        let response = await axios.post(`${path}/reset_password/${encodedToken}`,requestData,config)
         if (response.status ===200) {
           console.log("success");
+          alert("good")
         }
       }
     } catch (error) {
@@ -85,7 +73,6 @@ function PasswordChange() {
               <button onClick={handleSubmitData} className="btn btn-primary">
               Change password
               </button>
-       
             </div>
           </div>
         </div>
