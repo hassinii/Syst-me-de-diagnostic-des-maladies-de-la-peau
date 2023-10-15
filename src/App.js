@@ -25,15 +25,15 @@ import Diagnostics from './pages/Entités/Diagnostics';
 import Test from './Test';
 import ForgetPass from './pages/auth/ForgetPass';
 import NewPasseword from './pages/auth/NewPasseword';
-<<<<<<< HEAD
+
 import MedecinsUp from './components/test';
-=======
+
 import MedecinRdv from './pages/Entités/MedecinRdv';
 import PatientRdv from './pages/Entités/PatientRdv';
 import Appointment from './components/update/AppointmentPatient';
->>>>>>> 1b926f388314cb4c9f6668da56f880291778d52f
 
 
+// app.js fichier
 function App() {
   const isLoggedIn = useAuth();
 
