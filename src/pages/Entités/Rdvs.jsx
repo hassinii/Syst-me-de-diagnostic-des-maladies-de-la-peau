@@ -6,7 +6,7 @@ import './style.css';
 import { useUserData } from '../../contexts/UserDataContext';
 import NotificationIcon from '../../assets/icons/notification.svg';
 import SettingsIcon from '../../assets/icons/settings.svg';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrashAlt,faHeartbeat, faPeopleCarry } from '@fortawesome/free-solid-svg-icons';
 import Form_rdv from '../../components/form/form_rdv';
@@ -17,6 +17,7 @@ import Form_consultation from '../../components/form/form_consult';
 import Transition from '../../constants/transition';
 import Form__validate_rdv from '../../components/form/form_validate_rdv';
 import { Table } from 'react-bootstrap';
+import axios from 'axios';
 
 function Rdvs() {
   const { rdvs } = useUserData();
@@ -35,6 +36,9 @@ function Rdvs() {
   const [doctor, setDoctor] = useState([]);
   const [rendez_vous, setRendez_vous] = useState([]);
   const colors = ['#FF5733', '#FFC300', '#36A2EB', '#4CAF50', '#E91E63'];
+  const {id} = useParams()
+
+
 
   useEffect(() => {
     let doctorIdCounter = 0;
@@ -304,6 +308,7 @@ function Rdvs() {
         {modalIsOpen7 && <Navigate to='/dashboard/consultations' />}
       </div>
     </Transition>
+
   );
 }
 

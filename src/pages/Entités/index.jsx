@@ -9,7 +9,7 @@ import NotificationIcon from '../../assets/icons/notification.svg';
 import SettingsIcon from '../../assets/icons/settings.svg';
 import Form from '../../components/form/form_patient';
 import axios from 'axios';
-import { Navigate } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import Form_confirm_delete from '../../components/form/form_delete';
 import { MDBIcon } from 'mdb-react-ui-kit';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -344,12 +344,17 @@ function Patients() {
                       </span>}
                       
                       <span>
-                        <button className='elt-btn btn btn-warning' title='My appoitments' onClick={() => fmesRdvs(patient._id)}>
+                        <button className='elt-btn btn btn-warning' title='Patient appointments' onClick={() => fmesRdvs(patient._id)}>
                           <FontAwesomeIcon icon={faHouseMedicalFlag} />
                         </button>
+                        {/* <Link to={`/dashboard/patient/${patient._id}`}>
+                        <button className='elt-btn btn btn-warning' title='Patient appointments'>
+                          <FontAwesomeIcon icon={faHouseMedicalFlag} />
+                        </button>
+                        </Link> */}
                       </span>
                       <span>
-                        <button className='elt-btn btn btn-info' title='My visits' onClick={() => fmesVisits(patient._id)}>
+                        <button className='elt-btn btn btn-info' title='patient visits' onClick={() => fmesVisits(patient._id)}>
                           <FontAwesomeIcon icon={faTowerObservation} />
                         </button>
                       </span>

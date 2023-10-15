@@ -3,13 +3,13 @@ import DashboardHeader from '../../components/DashboardHeader';
 
 import { calculateRange, sliceData } from '../../utils/table-pagination';
 
-import './style.css';
+// import './style.css';
 import { useUserData } from '../../contexts/UserDataContext';
 import NotificationIcon from '../../assets/icons/notification.svg';
 import SettingsIcon from '../../assets/icons/settings.svg';
 import Form from '../../components/form/form_medecin';
 import axios from 'axios';
-import { Navigate } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import Form_confirm_delete from '../../components/form/form_delete';
 import { MDBIcon } from 'mdb-react-ui-kit';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -160,19 +160,16 @@ function Medecins() {
                   <td>
                     <span>{medecin.username}</span>
                   </td>
-                  {/* <td>
-                    <span>{medecin.adresse}</span>
-                  </td> */}
                   <td>
                     <span>{medecin.tel}</span>
                   </td>
                   <td>
                     <span>{medecin.genre}</span>
                   </td>
-                  <td>
+                  <td className='row'>
                     {userData.role.includes('admin') &&
                       <>
-                        <span>
+                        <span className='col-1 m-1'>
                           <button className='elt-btn btn elt-btn-success' onClick={() => {
                             setModalIsOpen(false)
                             setModalIsOpen4(false)
@@ -184,8 +181,8 @@ function Medecins() {
                           }>
                             <FontAwesomeIcon icon={faEdit} />
                           </button>
-                        </span>
-                        <span>
+                        </span >
+                        <span className='col-1 m-1'>
                           <button className='elt-btn btn btn-danger display-flex' onClick={() => {
                             setModalIsOpen(false)
                             setModalIsOpen4(false)
@@ -199,7 +196,7 @@ function Medecins() {
                         </span>
                       </>
                     }
-                    <span>
+                    <span className='col-1 m-1'>
                       <button className='elt-btn btn btn-primary' onClick={() => {
                         setModalIsOpen(false)
                         setModalIsOpen4(false)
@@ -211,10 +208,13 @@ function Medecins() {
                         <FontAwesomeIcon icon={faEye} />
                       </button>
                     </span>
-                    <span>
-                      <button className='elt-btn btn btn-warning' onClick={() => fmesRdvs(medecin._id)}>
+                    <span className='col-1 m-1'>
+                      {/* <button className='elt-btn btn btn-warning' onClick={() => fmesRdvs(medecin._id)}>
                         <FontAwesomeIcon icon={faHouseMedicalFlag}/>
-                      </button>
+                      </button> */}
+                      <Link to={`/dashboard/medecin/${medecin._id}`}>
+                        <button className='elt-btn btn btn-warning'><FontAwesomeIcon icon={faHouseMedicalFlag}/></button>
+                      </Link>
                     </span>
                   </td>
                 </tr>
@@ -240,11 +240,11 @@ function Medecins() {
           </div>
         )}
       </div>
-      {modalIsOpen && <Form_Medecin open={modalIsOpen} />}
-      {modalIsOpen2 && <Form_Medecin open={modalIsOpen2} medecinToUpdate={medecin} />}
-      {modalIsOpen3 && <Form_confirm_delete open={modalIsOpen3} userToDelete={medecin} />}
-      {modalIsOpen4 && <Profile />}
-      {modalIsOpen5 && <Navigate to='/dashboard/rdv' />}
+        {modalIsOpen && <Form_Medecin open={modalIsOpen} />}
+        {modalIsOpen2 && <Form_Medecin open={modalIsOpen2} medecinToUpdate={medecin} />}
+        {modalIsOpen3 && <Form_confirm_delete open={modalIsOpen3} userToDelete={medecin} />}
+        {modalIsOpen4 && <Profile />}
+        {/* {modalIsOpen5 && <Navigate to="/dashboard/rdv" />} */}
     </div>
     </Transition>
   );
