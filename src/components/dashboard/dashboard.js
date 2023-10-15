@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState,useMemo } from 'react';
 import { Outlet, Navigate } from 'react-router-dom'; // Utilisez Outlet pour rendre les routes imbriquées
 
 import { useAuth } from '../../contexts/AuthContext';
@@ -66,7 +66,7 @@ function Dashboard() {
 
       try {
         const response = await axios.get(`${path}/api/users/current`);
-        updateUserData(response.data);
+        // updateUserData(response.data);
         localStorage.setItem('user', response.data)
         if (response.data.role.includes('admin')) {
           setSiderMenu(sidebar_menu);
@@ -108,8 +108,12 @@ function Dashboard() {
       }
     };
 
-    fetchUserData();
-  }, []);
+    if (isLoggedIn) {
+      fetchUserData();
+    }
+
+    
+  }, [isLoggedIn]);
 
 
   if (!isLoggedIn) {
@@ -129,3 +133,5 @@ function Dashboard() {
 }
 
 export default Dashboard;
+
+// hhhhhh

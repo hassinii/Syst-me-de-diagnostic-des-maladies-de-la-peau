@@ -14,7 +14,7 @@ function SideBar ({ menu }) {
 
     const [active, setActive] = useState(1);
     const {logout} = useAuth()
-    const {userData} = useUserData()
+    // const {userData} = useUserData()
 
     useEffect(() => {
         menu.forEach(element => {

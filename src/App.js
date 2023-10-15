@@ -25,6 +25,7 @@ import Diagnostics from './pages/Entités/Diagnostics';
 import Test from './Test';
 import ForgetPass from './pages/auth/ForgetPass';
 import NewPasseword from './pages/auth/NewPasseword';
+import MedecinsUp from './components/test';
 
 
 function App() {
@@ -41,6 +42,7 @@ function App() {
             <Route path='/forget-password' element={<ForgetPass/>} />
             <Route path='/change-password/:token' element={<NewPasseword/>} />
               <Route path='/' element={<Home />} />
+              <Route path='/testing' element={<MedecinsUp/>} />
 
               <Route path='/login' element={<Login />} />
               <Route path='/hassini' element={<Test/>}/>

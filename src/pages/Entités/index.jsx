@@ -213,6 +213,7 @@ function Patients() {
 
   const fview = async (user_id) => {
     fetchPatient(user_id);
+    console.log(`profile buton clicked :user_id ${user_id}`)
     if (patient && patient._id == user_id) {
       modalIsOpen4 ? setModalIsOpen4(false) : setModalIsOpen4(true);
     }
@@ -333,13 +334,15 @@ function Patients() {
                         </button>
                       </span>
                       {userData.role.includes('secretaire') && !userData.role.includes('admin') &&<span>
-                        <button className='elt-btn btn btn-dark' title='new appointment' onClick={() => {
+                        <button className='elt-btn btn btn-dark' title='new appointment'  style={{ width: '150px', height: '50px' }} onClick={() => {
                           closeModal()
                           fNewRdvs(patient._id)
                         }}>
                           <FontAwesomeIcon icon={faCat} />
                         </button>
+                      
                       </span>}
+                      
                       <span>
                         <button className='elt-btn btn btn-warning' title='My appoitments' onClick={() => fmesRdvs(patient._id)}>
                           <FontAwesomeIcon icon={faHouseMedicalFlag} />
