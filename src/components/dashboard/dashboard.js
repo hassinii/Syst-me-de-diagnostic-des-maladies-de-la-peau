@@ -18,7 +18,7 @@ import '../../pages/styles.css'
 import sidebar_menu_patient from '../../constants/siderbar_menu_patient';
 import Transition from '../../constants/transition';
 
-
+// comment
 
 function Dashboard() {
   const { isLoggedIn, logout } = useAuth();

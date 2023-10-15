@@ -212,7 +212,7 @@ function Medecins() {
                       {/* <button className='elt-btn btn btn-warning' onClick={() => fmesRdvs(medecin._id)}>
                         <FontAwesomeIcon icon={faHouseMedicalFlag}/>
                       </button> */}
-                      <Link to={`/dashboard/medecin/${medecin._id}`}>
+                      <Link to={`/dashboard/appointment/medecin/${medecin._id}`}>
                         <button className='elt-btn btn btn-warning'><FontAwesomeIcon icon={faHouseMedicalFlag}/></button>
                       </Link>
                     </span>

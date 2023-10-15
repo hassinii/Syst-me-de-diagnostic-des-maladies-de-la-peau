@@ -344,14 +344,14 @@ function Patients() {
                       </span>}
                       
                       <span>
-                        <button className='elt-btn btn btn-warning' title='Patient appointments' onClick={() => fmesRdvs(patient._id)}>
+                        {/* <button className='elt-btn btn btn-warning' title='Patient appointments' onClick={() => fmesRdvs(patient._id)}>
                           <FontAwesomeIcon icon={faHouseMedicalFlag} />
-                        </button>
-                        {/* <Link to={`/dashboard/patient/${patient._id}`}>
+                        </button> */}
+                        <Link to={`/dashboard/appointment/patient/${patient._id}`}>
                         <button className='elt-btn btn btn-warning' title='Patient appointments'>
                           <FontAwesomeIcon icon={faHouseMedicalFlag} />
                         </button>
-                        </Link> */}
+                        </Link>
                       </span>
                       <span>
                         <button className='elt-btn btn btn-info' title='patient visits' onClick={() => fmesVisits(patient._id)}>

@@ -25,7 +25,13 @@ import Diagnostics from './pages/Entités/Diagnostics';
 import Test from './Test';
 import ForgetPass from './pages/auth/ForgetPass';
 import NewPasseword from './pages/auth/NewPasseword';
+<<<<<<< HEAD
 import MedecinsUp from './components/test';
+=======
+import MedecinRdv from './pages/Entités/MedecinRdv';
+import PatientRdv from './pages/Entités/PatientRdv';
+import Appointment from './components/update/AppointmentPatient';
+>>>>>>> 1b926f388314cb4c9f6668da56f880291778d52f
 
 
 function App() {
@@ -51,6 +57,12 @@ function App() {
                 <Route path='patients' element={<Patients />} />
                 <Route path='account' element={<Account />} />
                 <Route path='medecins' element={<Medecins />} />
+
+                <Route path='appointment/medecin/:_id' element={<MedecinRdv />} />
+                <Route path='patient/:_id' element={<PatientRdv />} />
+                <Route path='appointment/patient/:user_id' element={Appointment} />
+                
+
                 <Route path='secretaires' element={<Secretaires />} />
                 <Route path='visits' element={<Consultations />} />
                 <Route path='diagnostics' element={<Diagnostics />} />
