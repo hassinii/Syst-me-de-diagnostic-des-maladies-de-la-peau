@@ -27,7 +27,7 @@ import ForgetPass from './pages/auth/ForgetPass';
 import NewPasseword from './pages/auth/NewPasseword';
 import MedecinRdv from './pages/Entités/MedecinRdv';
 import PatientRdv from './pages/Entités/PatientRdv';
-import Appointment from './components/update/Appointment';
+import Appointment from './components/update/AppointmentPatient';
 
 
 function App() {
@@ -52,9 +52,9 @@ function App() {
                 <Route path='patients' element={<Patients />} />
                 <Route path='account' element={<Account />} />
                 <Route path='medecins' element={<Medecins />} />
-                <Route path='medecin/:_id' element={<MedecinRdv />} />
+                <Route path='appointment/medecin/:_id' element={<MedecinRdv />} />
                 <Route path='patient/:_id' element={<PatientRdv />} />
-                <Route path='appointment/:user/:user_id' element={Appointment} />
+                <Route path='appointment/patient/:user_id' element={Appointment} />
                 
                 <Route path='secretaires' element={<Secretaires />} />
                 <Route path='visits' element={<Consultations />} />
