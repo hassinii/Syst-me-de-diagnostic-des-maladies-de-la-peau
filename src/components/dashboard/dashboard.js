@@ -103,8 +103,8 @@ function Dashboard() {
         }
       } catch (error) {
         console.log('Erreur lors de la récupération des données utilisateur :', error);
-        // logout()
-        // return <Navigate to='/login' />;
+        logout()
+        return <Navigate to='/login' />;
       }
     };
 
