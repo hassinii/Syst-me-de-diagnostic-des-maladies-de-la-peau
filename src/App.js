@@ -31,6 +31,7 @@ import MedecinsUp from './components/test';
 import MedecinRdv from './pages/Entités/MedecinRdv';
 import PatientRdv from './pages/Entités/PatientRdv';
 import Appointment from './components/update/AppointmentPatient';
+import MedAppointements from './pages/Entités/MedAppointements';
 
 
 // app.js fichier
@@ -62,6 +63,9 @@ function App() {
                 <Route path='patient/:_id' element={<PatientRdv />} />
                 <Route path='appointment/patient/:user_id' element={Appointment} />
                 
+                {/* recement ajouté */}
+
+                <Route path='appointment/currentmedecin/' element={<MedAppointements />} />
 
                 <Route path='secretaires' element={<Secretaires />} />
                 <Route path='visits' element={<Consultations />} />

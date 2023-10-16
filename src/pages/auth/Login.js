@@ -28,9 +28,11 @@ function Login() {
 
       if (response.status === 200) {
         const token = response.data.token;
+        const user_id = response.data.user_id;
 
         // Stockez le token JWT dans le stockage local
         localStorage.setItem('token', token);
+        localStorage.setItem('user_id', user_id);
         // Ajoutez le token JWT aux en-têtes de toutes les requêtes Axios ultérieures
         axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 

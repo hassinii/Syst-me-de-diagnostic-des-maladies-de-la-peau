@@ -66,7 +66,7 @@ function Dashboard() {
 
       try {
         const response = await axios.get(`${path}/api/users/current`);
-        // updateUserData(response.data);
+        updateUserData(response.data);
         localStorage.setItem('user', response.data)
         if (response.data.role.includes('admin')) {
           setSiderMenu(sidebar_menu);
@@ -103,17 +103,16 @@ function Dashboard() {
         }
       } catch (error) {
         console.log('Erreur lors de la récupération des données utilisateur :', error);
-        logout()
+        // logout()
         return <Navigate to='/login' />;
       }
     };
 
-    if (isLoggedIn) {
-      fetchUserData();
-    }
 
+    fetchUserData();
     
-  }, [isLoggedIn]);
+
+  }, []);
 
 
   if (!isLoggedIn) {

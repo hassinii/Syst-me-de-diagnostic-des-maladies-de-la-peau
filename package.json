@@ -8,7 +8,7 @@
     "@emotion/styled": "^11.11.0",
     "@fortawesome/free-solid-svg-icons": "^6.4.2",
     "@fortawesome/react-fontawesome": "^0.2.0",
-    "@mui/material": "^5.14.12",
+    "@mui/material": "^5.14.13",
     "@syncfusion/ej2-react-base": "^22.2.5",
     "@syncfusion/ej2-react-buttons": "^22.2.9",
     "@syncfusion/ej2-react-calendars": "^22.2.10",
