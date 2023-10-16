@@ -103,7 +103,7 @@ function NavBar() {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={fLogout}>
+          <Button variant="danger" onClick={fLogout}>
             Logout
           </Button>
         </Modal.Footer>
