@@ -20,7 +20,7 @@ const sidebar_menu_medecin = [
     {
         id: 2,
         icon: DossierIcon,
-        path: '/dashboard/rdv',
+        path: '/dashboard/appointment/currentmedecin/',
         title: 'My appointments',
     },
     {
