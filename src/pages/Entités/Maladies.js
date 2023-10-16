@@ -19,6 +19,7 @@ import userEvent from '@testing-library/user-event';
 import Transition from '../../constants/transition';
 import './style.css'
 import { Table } from 'react-bootstrap';
+import { FaEdit, FaEye, FaTrash } from 'react-icons/fa';
 
 function Maladies() {
   const { maladies, userData } = useUserData();
@@ -108,7 +109,7 @@ function Maladies() {
 
         <div className='dashboard-content-container'>
           <div className='dashboard-content-header'>
-            <h2>DISEASES LIST</h2>
+          <h4>Diseases list</h4>
             <div className='dashboard-content-search'>
               <input
                 type='text'
@@ -139,43 +140,48 @@ function Maladies() {
                     <td>
                       <span>{maladie.nom}</span>
                     </td>
+                    <td className="text-center">
+                      <div className="d-flex justify-content-center align-items-center">
+                        <FaEye
+                          onClick={() => {
+                            setModalIsOpen(false);
+                            setModalIsOpen4(false);
+                            setModalIsOpen2(false);
+                            setModalIsOpen3(false);
+                            fstades(maladie._id);
+                          }}
+                          style={{ cursor: 'pointer', color: 'blue', marginRight: '10px'}}
+                        />
+                      </div>
+                    </td>
                     <td>
-                      <span>
-                        <button className='elt-btn btn btn-primary' onClick={() => {
-                          setModalIsOpen(false)
-                          setModalIsOpen4(false)
-                          setModalIsOpen2(false)
-                          setModalIsOpen3(false)
-                          fstades(maladie._id)
-                        }}>
-                          <FontAwesomeIcon icon={faEye} />
-                        </button>
+                      <span className='text-center'>
+                        <div className='text-center d-flex justify-content-center'>
+                          <FaEdit 
+                          onClick={() => {
+                            setModalIsOpen(false)
+                            setModalIsOpen4(false)
+                            setModalIsOpen2(false)
+                            setModalIsOpen3(false)
+                            fupdate(maladie._id)
+                          }}
+                          style={{marginRight:"10px", color:"green", cursor:"pointer"}} />
+                        </div>
                       </span>
                     </td>
                     <td>
-                      <span>
-                        <button className='elt-btn btn btn-success' onClick={() => {
-                          setModalIsOpen(false)
-                          setModalIsOpen4(false)
-                          setModalIsOpen2(false)
-                          setModalIsOpen3(false)
-                          fupdate(maladie._id)
-                        }}>
-                          <FontAwesomeIcon icon={faEdit} />
-                        </button>
-                      </span>
-                    </td>
-                    <td>
-                      <span>
-                        <button className='elt-btn btn btn-danger display-flex' onClick={() => {
-                          setModalIsOpen(false)
-                          setModalIsOpen4(false)
-                          setModalIsOpen2(false)
-                          setModalIsOpen3(false)
-                          fdelete(maladie._id)
-                        }}>
-                          <FontAwesomeIcon icon={faTrashAlt} />
-                        </button>
+                      <span className='text-center'>
+                        <div className='text-center justify-content-center'>
+                          <FaTrash 
+                          onClick={() => {
+                            setModalIsOpen(false)
+                            setModalIsOpen4(false)
+                            setModalIsOpen2(false)
+                            setModalIsOpen3(false)
+                            fdelete(maladie._id)
+                          }}
+                          style={{marginRight:"10px", color:"red", cursor:"pointer"}}/>
+                        </div>
                       </span>
                     </td>
                   </tr>

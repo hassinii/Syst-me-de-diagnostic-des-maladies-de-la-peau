@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import { calculateRange, sliceData } from '../../utils/table-pagination';
 
-import './style.css';
+// import './style.css';
 import { useUserData } from '../../contexts/UserDataContext';
 import NotificationIcon from '../../assets/icons/notification.svg';
 import SettingsIcon from '../../assets/icons/settings.svg';
@@ -18,6 +18,7 @@ import Transition from '../../constants/transition';
 import Form__validate_rdv from '../../components/form/form_validate_rdv';
 import { Table } from 'react-bootstrap';
 import axios from 'axios';
+import { FaEdit, FaTrash, FaCheck } from 'react-icons/fa'
 
 function Rdvs() {
   const { rdvs } = useUserData();
@@ -234,7 +235,7 @@ function Rdvs() {
                       {userData.role.includes('secretaire') &&
                         <>
                           <span>
-                            <button className='elt-btn btn btn-primary' title='update' onClick={() => {
+                              <FaEdit style={{ cursor: 'pointer', color: 'blue', marginRight: '10px' }} onClick={() => {
                               setModalIsOpen(false)
                               setModalIsOpen4(false)
                               setModalIsOpen2(false)
@@ -242,12 +243,10 @@ function Rdvs() {
                               setModalIsOpen5(false)
                               setModalIsOpen6(false)
                               fupdate(rdv._id)
-                            }}>
-                              <FontAwesomeIcon icon={faEdit} />
-                            </button>
+                            }} />
                           </span>
                           <span>
-                            {<button className='elt-btn btn btn-danger display-flex' title='delete' onClick={() => {
+                          <FaTrash  style={{ cursor: 'pointer', color: 'red', marginRight: '10px' }} onClick={() => {
                               setModalIsOpen(false)
                               setModalIsOpen4(false)
                               setModalIsOpen2(false)
@@ -255,24 +254,20 @@ function Rdvs() {
                               setModalIsOpen5(false)
                               setModalIsOpen6(false)
                               fdelete(rdv._id)
-                            }}>
-                              <FontAwesomeIcon icon={faTrashAlt} />
-                            </button>}
+                            }} />
                           </span>
                         </>}
 
                       {!rdv.statut && (userData.role.includes('secretaire'))&& <>
                         <span>
-                          <button className='elt-btn btn btn-info display-flex' title='appointment validation' onClick={() => {
+                          <FaCheck style={{ cursor: 'pointer', color: 'green' }} onClick={() => {
                             setModalIsOpen(false)
                             setModalIsOpen4(false)
                             setModalIsOpen2(false)
                             setModalIsOpen3(false)
                             setModalIsOpen5(false)
                             fvalidation(rdv._id)
-                          }}>
-                            <FontAwesomeIcon icon={faHeartbeat} />
-                          </button>
+                          }} />
                         </span>
                       </>}
                     </td>

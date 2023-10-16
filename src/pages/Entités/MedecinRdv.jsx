@@ -17,6 +17,7 @@ export default function MedecinRdv() {
     const [filtredData, setFiltredData] = useState([])
     const {path} = useUserData()
     const [doctor, setDoctor] = useState("")
+    const [loading, setLoading] = useState(true)
     const {_id} = useParams()
     const tableRef = useRef(null);
 
@@ -24,11 +25,19 @@ export default function MedecinRdv() {
         console.log(_id);
           let response = axios.get(`${path}/api/appointment/doctor/${_id}`)
           .then(response =>{
+            setLoading(false)
             setDoctor(response.data[0].doctor)
             setData(response.data)
             setFiltredData(response.data)
+          }).catch(error =>{
+            setLoading(false)
+            if(error.response && error.response.statut ===404){
+              console.log("No appointment for this doctor");
+            }
+            else{
+              console.log("somethings go wrong");
+            }
           })
-          // $(tableRef.current).DataTable();
       },[_id])
 
       const transformDate = (date) =>{
@@ -109,11 +118,18 @@ export default function MedecinRdv() {
                 ))
               )
         
-              :
-              <Box sx={{ display: 'flex' }} className="text-center">
-                <CircularProgress />
-              </Box>
-            }
+              : (
+                loading && (
+                  <tr>
+                      <td colSpan="4">
+                        <Box sx={{ display: 'flex', alignItems: "center", justifyContent: "center" }} className="text-center">
+                          <CircularProgress />
+                        </Box>
+                      </td>
+                    </tr>
+  
+                )
+              )}
           </tbody>
     </Table>
     </>
