@@ -3,7 +3,7 @@ import DashboardHeader from '../../components/DashboardHeader';
 
 import { calculateRange, sliceData } from '../../utils/table-pagination';
 
-import '../styles.css';
+// import '../styles.css';
 import { useUserData } from '../../contexts/UserDataContext';
 import NotificationIcon from '../../assets/icons/notification.svg';
 import SettingsIcon from '../../assets/icons/settings.svg';
@@ -22,7 +22,8 @@ import { fetchPatientMedecinVisite, fetchPatientVisite } from '../../components/
 import { Table } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { fetchMedecins } from '../../components/fetchElement/fetchMedecins';
-
+import { FaEdit, FaTrash, FaCheck, FaCalendarPlus, FaHospital, FaUser,FaMedkit } from 'react-icons/fa';
+import { faHospital, faAmbulance, faMedkit, faUserNurse } from '@fortawesome/free-solid-svg-icons';
 function Patients() {
   const { patients } = useUserData();
   const [search, setSearch] = useState('');
@@ -263,7 +264,7 @@ function Patients() {
 
         <div className='dashboard-content-container'>
           <div className='dashboard-content-header'>
-            <h2>Patients List</h2>
+            <h4>Patients List</h4>
             <div className='dashboard-content-search'>
               <input
                 type='text'
@@ -308,53 +309,63 @@ function Patients() {
                       {userData.role.includes('secretaire') &&
                         <>
                           <span>
-                            <button className='elt-btn btn btn-success' title='update' onClick={() => {
-
-                              fupdate(patient._id)
-                            }}>
-                              <FontAwesomeIcon icon={faEdit} />
-                            </button>
+                            <FaEdit title='Edit'
+                                onClick={() => {
+                                  fupdate(patient._id)
+                                }}
+                                style={{ cursor: 'pointer', color: 'blue', marginRight: '10px' }}
+                              />
                           </span>
                           <span>
-                            <button className='elt-btn btn btn-danger display-flex' title='delete' onClick={() => {
+                            <FaTrash title='Delete' onClick={() => {
                               closeModal()
                               fdelete(patient._id)
-                            }}>
-                              <FontAwesomeIcon icon={faTrashAlt} />
-                            </button>
+                            }}
+                                style={{ cursor: 'pointer', color: 'red', marginRight: '10px' }}
+                              />
                           </span>
                         </>}
                       <span>
-                        <button className='elt-btn btn btn-primary' title='profil' onClick={() => {
-                          closeModal()
-                          fview(patient._id)
-                        }}>
-                          <FontAwesomeIcon icon={faEye} />
-                        </button>
+                          <FaUser
+                            title='Profil'
+                            onClick={() => {
+                              closeModal()
+                              fview(patient._id)
+                            }}
+                            style={{ cursor: 'pointer', color: 'purple', marginRight: '10px' }}
+                          />
                       </span>
                       {userData.role.includes('secretaire') && !userData.role.includes('admin') &&<span>
-                        <button className='elt-btn btn btn-dark' title='new appointment' onClick={() => {
-                          closeModal()
-                          fNewRdvs(patient._id)
-                        }}>
-                          <FontAwesomeIcon icon={faCat} />
-                        </button>
+                        <FaMedkit
+                          onClick={() => {
+                            closeModal()
+                            fNewRdvs(patient._id)
+                          }}
+                          title='new appointment'
+                          style={{ cursor: 'pointer', color: 'green', marginRight: '10px' }}
+                        />
                       </span>}
                       <span>
-                        {/* <button className='elt-btn btn btn-warning' title='Patient appointments' onClick={() => fmesRdvs(patient._id)}>
-                          <FontAwesomeIcon icon={faHouseMedicalFlag} />
-                        </button> */}
-                        <Link to={`/dashboard/appointment/patient/${patient._id}`}>
-                        <button className='elt-btn btn btn-warning' title='Patient appointments'>
-                          <FontAwesomeIcon icon={faHouseMedicalFlag} />
-                        </button>
+
+                        <Link to={`/dashboard/appoitment/patient/${patient._id}`}>
+                          <FaCalendarPlus
+                          title='Patient appointments'
+                          style={{ cursor: 'pointer', color: 'orange', marginRight: '10px' }}
+                        />
                         </Link>
+
+
                       </span>
                       <span>
-                        <button className='elt-btn btn btn-info' title='patient visits' onClick={() => fmesVisits(patient._id)}>
-                          <FontAwesomeIcon icon={faTowerObservation} />
-                        </button>
+                        <FaHospital
+                          title='patient visits'
+                          onClick={() => fmesVisits(patient._id)}
+                          style={{ cursor: 'pointer', color: 'brown' }}
+                        />
                       </span>
+
+
+
                     </td>
                   </tr>
                 ))}

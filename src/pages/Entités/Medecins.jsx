@@ -20,6 +20,7 @@ import { fetchMedecin } from '../../components/fetchElement/fetchMedecins';
 import { fetchMedecinRdvs } from '../../components/fetchElement/fetchRdvs';
 import Transition from '../../constants/transition';
 import { Table } from 'react-bootstrap';
+import { FaEdit, FaTrash, FaCheck, FaUser, FaHospitalUser, FaHospitalSymbol, FaHospital } from 'react-icons/fa'
 
 function Medecins() {
   const { medecins, updateRdvs } = useUserData();
@@ -124,7 +125,7 @@ function Medecins() {
 
       <div className='dashboard-content-container'>
         <div className='dashboard-content-header'>
-          <h2>DOCTORS LIST</h2>
+          <h4>Doctors list</h4>
           <div className='dashboard-content-search'>
             <input
               type='text'
@@ -169,53 +170,51 @@ function Medecins() {
                   <td className='row'>
                     {userData.role.includes('admin') &&
                       <>
-                        <span className='col-1 m-1'>
-                          <button className='elt-btn btn elt-btn-success' onClick={() => {
+                        <span >
+                        <FaEdit
+                        title='Edit'
+                          onClick={() => {
                             setModalIsOpen(false)
                             setModalIsOpen4(false)
                             setModalIsOpen2(false)
                             setModalIsOpen3(false)
                             setModalIsOpen5(false)
                             fupdate(medecin._id)
-                          }
-                          }>
-                            <FontAwesomeIcon icon={faEdit} />
-                          </button>
-                        </span >
-                        <span className='col-1 m-1'>
-                          <button className='elt-btn btn btn-danger display-flex' onClick={() => {
+                          }}
+                            style={{ cursor: 'pointer', color: 'blue', marginRight: '10px' }}
+                          />
+                          <FaTrash
+                          title='Delete'
+                            onClick={() => {
+                              setModalIsOpen(false)
+                              setModalIsOpen4(false)
+                              setModalIsOpen2(false)
+                              setModalIsOpen3(false)
+                              setModalIsOpen5(false)
+                              fdelete(medecin._id)
+                            }}
+                            style={{ cursor: 'pointer', color: 'red', marginRight: '10px' }}
+                          />
+                          <FaUser
+                          title='Profil'
+                          onClick={() => {
                             setModalIsOpen(false)
                             setModalIsOpen4(false)
                             setModalIsOpen2(false)
                             setModalIsOpen3(false)
                             setModalIsOpen5(false)
-                            fdelete(medecin._id)
-                          }}>
-                            <FontAwesomeIcon icon={faTrashAlt} />
-                          </button>
-                        </span>
+                            fview(medecin._id)
+                          }}
+                            style={{ cursor: 'pointer', color: 'blue', marginRight: '10px' }}
+                          />
+                          
+                            <Link to={`/dashboard/appointment/medecin/${medecin._id}`}>
+                                <FaHospital  title="Doctor Appointment" style={{ cursor: 'pointer', color: 'orange', marginRight: '10px' }} />
+                            </Link>
+                        </span >
                       </>
                     }
-                    <span className='col-1 m-1'>
-                      <button className='elt-btn btn btn-primary' onClick={() => {
-                        setModalIsOpen(false)
-                        setModalIsOpen4(false)
-                        setModalIsOpen2(false)
-                        setModalIsOpen3(false)
-                        setModalIsOpen5(false)
-                        fview(medecin._id)
-                      }}>
-                        <FontAwesomeIcon icon={faEye} />
-                      </button>
-                    </span>
-                    <span className='col-1 m-1'>
-                      {/* <button className='elt-btn btn btn-warning' onClick={() => fmesRdvs(medecin._id)}>
-                        <FontAwesomeIcon icon={faHouseMedicalFlag}/>
-                      </button> */}
-                      <Link to={`/dashboard/appointment/medecin/${medecin._id}`}>
-                        <button className='elt-btn btn btn-warning'><FontAwesomeIcon icon={faHouseMedicalFlag}/></button>
-                      </Link>
-                    </span>
+
                   </td>
                 </tr>
               ))}

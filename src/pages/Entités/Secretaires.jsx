@@ -17,6 +17,7 @@ import Transition from '../../constants/transition';
 import { Table } from 'react-bootstrap';
 import './style.css'
 import { useNavigate } from 'react-router-dom';
+import { FaEdit, FaTrash, FaCheck, FaUser, FaHospitalUser, FaHospitalSymbol, FaHospital } from 'react-icons/fa'
 
 function Secretaires() {
   const { secretaires, userData } = useUserData();
@@ -128,7 +129,7 @@ function Secretaires() {
 
         <div className='dashboard-content-container'>
           <div className='dashboard-content-header'>
-            <h2>Secretaires List</h2>
+            <h4>Secretaires List</h4>
             <div className='dashboard-content-search'>
               <input
                 type='text'
@@ -175,37 +176,35 @@ function Secretaires() {
                     </td>
                     <td>
                       <span>
-                        <button className='elt-btn btn btn-success' onClick={() => {
+                      <FaEdit  style={{ cursor: 'pointer', color: 'blue', marginRight: '10px'}}
+                        onClick={() => {
                           setModalIsOpen(false)
                           setModalIsOpen4(false)
                           setModalIsOpen2(false)
                           setModalIsOpen3(false)
                           fupdate(secretaire._id)
-                        }}>
-                          <FontAwesomeIcon icon={faEdit} />
-                        </button>
+                        }}
+                      />
                       </span>
                       <span>
-                        <button className='elt-btn btn btn-danger display-flex' onClick={() => {
-                          setModalIsOpen(false)
-                          setModalIsOpen4(false)
-                          setModalIsOpen2(false)
-                          setModalIsOpen3(false)
-                          fdelete(secretaire._id)
-                        }}>
-                          <FontAwesomeIcon icon={faTrashAlt} />
-                        </button>
+                        <FaTrash style={{ cursor: 'pointer', color: 'red', marginRight: '10px'}} 
+                          onClick={() => {
+                            setModalIsOpen(false)
+                            setModalIsOpen4(false)
+                            setModalIsOpen2(false)
+                            setModalIsOpen3(false)
+                            fdelete(secretaire._id)
+                          }}
+                        />
                       </span>
                       <span>
-                        <button className='elt-btn btn btn-primary' onClick={() => {
+                        <FaUser style={{ cursor: 'pointer', color: 'blue', marginRight: '10px'}} onClick={() => {
                           setModalIsOpen(false)
                           setModalIsOpen4(false)
                           setModalIsOpen2(false)
                           setModalIsOpen3(false)
                           fview(secretaire._id)
-                        }}>
-                          <FontAwesomeIcon icon={faEye} />
-                        </button>
+                        }} />
                       </span>
                     </td>
                   </tr>

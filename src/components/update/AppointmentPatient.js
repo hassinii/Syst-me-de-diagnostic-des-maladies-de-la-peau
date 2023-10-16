@@ -9,75 +9,16 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 
 export default function AppointmentPatient(user, user_id) {
-  const [data, setData] = useState([])
-    const [filtredData, setFiltredData] = useState([])
-    const {path} = useUserData()
-    const [doctor, setDoctor] = useState("")
-    const {_id} = useParams()
-    const tableRef = useRef(null);
-
-      useEffect(() =>{
-        console.log(_id);
-          let response = axios.get(`${path}/api/appointment/doctor/${_id}`)
-          .then(response =>{
-            setDoctor(response.data[0].doctor)
-            setData(response.data)
-            setFiltredData(response.data)
-          })
-          // $(tableRef.current).DataTable();
-      },[_id])
-
-      const transformDate = (date) =>{
-        const fullDate = new Date(date);
-        const formattedDate = fullDate.toLocaleString('en-US', {
-          weekday: 'short',
-          day: '2-digit',
-          month: 'short',
-          year: 'numeric',
-          hour: '2-digit',
-          minute: '2-digit',
-          hour12: false,
-        });
-        return formattedDate;
-      }
-      const handleFilter = (event) => {
-        const searchValue = event.target.value.toLowerCase();
-        const newdata = filtredData.filter(row => 
-          row.patient.nom.toLowerCase().includes(searchValue) || 
-          row.doctor.toLowerCase().includes(searchValue) ||
-          row.patient.tel.toLowerCase().includes(searchValue) 
-          // row.statut.toLowerCase().includes(searchValue)
-        );
-        setData(newdata);
-      }
-
-
-      const itemsPerPage = 10; // Number of items to display per page
-  const [currentPage, setCurrentPage] = useState(1);
-
-  // Calculate the range of items to display based on currentPage
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-
-  const paginatedData = data.slice(startIndex, endIndex);
-
-  const handleNextPage = () => {
-    setCurrentPage(currentPage + 1);
-  };
-
-  const handlePrevPage = () => {
-    setCurrentPage(currentPage - 1);
-  };
-
-
-  
+  useEffect(() =>{
+    console.log("appointment page for patient");
+  })
   return (
     <>
-    <h4 className='m-3'>Appointment List for the doctor : <span className='text-success'>{doctor}</span></h4>
+    <h4 className='m-3'>Appointment List for the doctor : <span className='text-success'></span></h4>
     <div className='d-flex justify-content-end'>
-      <input type='text' placeholder='Search...' className='p-1 m-2' onChange={handleFilter}/>
+      <input type='text' placeholder='Search...' className='p-1 m-2' />
     </div>
-    <Table striped bordered responsive className='p-1 m-2' ref={tableRef}>
+    <Table striped bordered responsive>
     <thead>
             <th>Patient</th>
             {/* <th>Doctor</th> */}
@@ -88,28 +29,7 @@ export default function AppointmentPatient(user, user_id) {
           </thead>
 
           <tbody>
-            {
-              data.length !== 0 ? (
-                data.map((item, index) => (
-                  <tr key={index}> {/* Add a unique key for each row */}
-                    <td>{item.patient.nom + " "+ item.patient.prenom}</td>
-                    {/* <td>{item.doctor}</td> */}
-                    <td>{item.patient.tel}</td>
-                    <td>{transformDate(item.dateDebutRdv)}</td>
-                    {item.statut == false ?
-                    <td>waiting</td>
-                    :
-                    <td>confirmed</td>
-                  }
-                  </tr>
-                ))
-              )
-        
-              :
-              <Box sx={{ display: 'flex' }} className="text-center">
-                <CircularProgress />
-              </Box>
-            }
+          
           </tbody>
     </Table>
     </>
