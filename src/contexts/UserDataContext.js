@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useState ,useMemo , lazy, Suspense} from 'react';
 
 // Créez un contexte UserDataContext
 const UserDataContext = createContext();
@@ -53,6 +53,12 @@ export function UserDataProvider({ children }) {
   const [daysOff, setDaysOff] = useState([])
   const [doublons, setDoublons] = useState([])
   const [path, setPath] = useState("http://localhost:5000");
+
+  const numberOfSecretaries = useMemo(() => secretaires.length, [secretaires]);
+  const numberOfPatients = useMemo(() => patients.length, [patients]);
+  const numberOfDoctors = useMemo(() => medecins.length, [medecins]);
+  const numberOfAppointments = useMemo(() => rdvs.length, [rdvs]);
+  const numberOfDiseases = useMemo(() => maladies.length, [maladies]);
 
 
   const openModal = () => {
@@ -191,7 +197,12 @@ export function UserDataProvider({ children }) {
         medecinRdvs,updateMedecinRdvs,
         daysOff, updateDaysOff,
         doublons,updateDoublons,
-        path
+        path,
+        numberOfSecretaries,
+        numberOfPatients,
+        numberOfDoctors,
+        numberOfAppointments,
+        numberOfDiseases,
       }}>
       {children}
     </UserDataContext.Provider>

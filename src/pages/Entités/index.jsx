@@ -214,6 +214,7 @@ function Patients() {
 
   const fview = async (user_id) => {
     fetchPatient(user_id);
+    console.log(`profile buton clicked :user_id ${user_id}`)
     if (patient && patient._id == user_id) {
       modalIsOpen4 ? setModalIsOpen4(false) : setModalIsOpen4(true);
     }
@@ -344,7 +345,11 @@ function Patients() {
                           title='new appointment'
                           style={{ cursor: 'pointer', color: 'green', marginRight: '10px' }}
                         />
+             
+                      
+
                       </span>}
+                      
                       <span>
 
                         <Link to={`/dashboard/appoitment/patient/${patient._id}`}>

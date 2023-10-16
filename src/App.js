@@ -25,11 +25,15 @@ import Diagnostics from './pages/Entités/Diagnostics';
 import Test from './Test';
 import ForgetPass from './pages/auth/ForgetPass';
 import NewPasseword from './pages/auth/NewPasseword';
+
+import MedecinsUp from './components/test';
+
 import MedecinRdv from './pages/Entités/MedecinRdv';
 import PatientRdv from './pages/Entités/PatientRdv';
 import AppointmentPatient from './components/update/AppointmentPatient';
 
 
+// app.js fichier
 function App() {
   const isLoggedIn = useAuth();
 
@@ -44,6 +48,7 @@ function App() {
             <Route path='/forget-password' element={<ForgetPass/>} />
             <Route path='/change-password/:token' element={<NewPasseword/>} />
               <Route path='/' element={<Home />} />
+              <Route path='/testing' element={<MedecinsUp/>} />
 
               <Route path='/login' element={<Login />} />
               <Route path='/hassini' element={<Test/>}/>
@@ -52,10 +57,12 @@ function App() {
                 <Route path='patients' element={<Patients />} />
                 <Route path='account' element={<Account />} />
                 <Route path='medecins' element={<Medecins />} />
+
                 <Route path='appointment/medecin/:_id' element={<MedecinRdv />} />
                 <Route path='appoitment/patient/:_id' element={<PatientRdv />} />
                 {/* <Route path='appointment/patient/:user_id' element={AppointmentPatient} /> */}
                 
+
                 <Route path='secretaires' element={<Secretaires />} />
                 <Route path='visits' element={<Consultations />} />
                 <Route path='diagnostics' element={<Diagnostics />} />
