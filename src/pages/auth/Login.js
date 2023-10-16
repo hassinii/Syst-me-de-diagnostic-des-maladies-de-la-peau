@@ -12,6 +12,8 @@ function Login() {
   const [password, setPassword] = useState('');
   const { path } = useUserData();
   const [errorMessage, setErrorMessage] = useState("");
+  const [showError, setShowError] = useState(false);
+
 
   if (localStorage.getItem('user')) {
     login()
@@ -38,6 +40,10 @@ function Login() {
         login();
       }
     } catch (error) {
+      setShowError(true);
+      setTimeout(() => {
+        setShowError(false);
+      }, 3000);
       console.error('Erreur d\'authentification', error);
       setErrorMessage("Username or password incorrect")
     }
@@ -78,6 +84,11 @@ function Login() {
               Sign In
             </button>
           </div>
+          {
+            showError && <div className='text-center justify-content-center d-flex'>
+            <p className='text-danger'>{errorMessage}</p>
+          </div>
+          }
           <p className="small mb-2 pb-lg-2 text-dark mt-2"><Link to="/forget-password">Forgot password?</Link></p>
         </div>
       </div>

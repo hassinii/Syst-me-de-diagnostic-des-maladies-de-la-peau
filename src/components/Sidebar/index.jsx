@@ -55,14 +55,6 @@ function SideBar ({ menu }) {
                         ))}
                     </div>
 
-                    <div className='sidebar-footer'>
-                        <button className='sidebar-item-label btn-logout' onClick={()=>fLogout()}>Logout
-                        <img 
-                            src={LogoutIcon}
-                            alt='icon-logout'
-                            className='sidebar-item-icon' />
-                        </button>
-                    </div>
                 </div>
             </div>
         </nav>

@@ -30,7 +30,6 @@ import MedecinsUp from './components/test';
 
 import MedecinRdv from './pages/Entités/MedecinRdv';
 import PatientRdv from './pages/Entités/PatientRdv';
-import AppointmentPatient from './components/update/AppointmentPatient';
 
 
 // app.js fichier
@@ -60,7 +59,6 @@ function App() {
 
                 <Route path='appointment/medecin/:_id' element={<MedecinRdv />} />
                 <Route path='appoitment/patient/:_id' element={<PatientRdv />} />
-                {/* <Route path='appointment/patient/:user_id' element={AppointmentPatient} /> */}
                 
 
                 <Route path='secretaires' element={<Secretaires />} />
