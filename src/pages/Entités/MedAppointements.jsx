@@ -74,7 +74,7 @@ export default function MedAppointements() {
         const timeout = setTimeout(() => {
           setShowProgress(false);
           setShowText(true);
-        }, 10000); // 10000 ms = 10 secondes
+        }, 40000); // 10000 ms = 10 secondes
     
         return () => {
           clearTimeout(timeout); // Nettoyer le timeout si le composant est démonté avant la fin des 10 secondes

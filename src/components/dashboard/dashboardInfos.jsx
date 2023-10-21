@@ -1,15 +1,14 @@
 import React from 'react';
 import { Card, Col, Container, Row } from 'react-bootstrap';
 import { useUserData } from '../../contexts/UserDataContext';
-<<<<<<< HEAD
+
 import { FaUserSecret, FaUser, FaUserMd, FaCalendarCheck, FaStethoscope } from 'react-icons/fa'; // Importation des icônes
-=======
->>>>>>> 8bc0e02281fb95219b7cfbd83a2dc85857441d36
+
 import './style.css';
 import Transition from '../../constants/transition';
 
 function DashboardInfos() {
-<<<<<<< HEAD
+
     const { rdvs, patients, medecins, maladies, secretaires } = useUserData();
     
     return (
@@ -72,7 +71,7 @@ function DashboardInfos() {
             </Container>
         </Transition>
     )
-=======
+
   const {numberOfSecretaries, numberOfPatients, numberOfDoctors, numberOfAppointments, numberOfDiseases } = useUserData();
 
   return (
@@ -125,7 +124,7 @@ function DashboardInfos() {
       </Container>
     </Transition>
   );
->>>>>>> 8bc0e02281fb95219b7cfbd83a2dc85857441d36
+
 }
 
 export default DashboardInfos;

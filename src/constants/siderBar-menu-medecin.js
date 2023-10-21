@@ -44,13 +44,13 @@ const sidebar_menu_medecin = [
     {
         id: 4,
         icon: PatientIcon,
-        path: '/dashboard/patients',
+        path: '/dashboard/Mypatients',
         title: 'My patients',
     },
     {
         id: 5,
         icon: PatientIcon,
-        path: '/dashboard/visits',
+        path: '/dashboard/currentdoctor/todayvisits/',
         title: 'Today visits',
     },
     {

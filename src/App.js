@@ -8,6 +8,7 @@ import Login from './pages/auth/Login';
 import Dashboard from './components/dashboard/dashboard';
 import NavBar from './components/navBar/NavBar';
 import Patients from './pages/Entités';
+import MedPatients from './pages/Entités/MedPatients';
 import Medecins from './pages/Entités/Medecins';
 import Secretaires from './pages/Entités/Secretaires';
 import Rdvs from './pages/Entités/Rdvs';
@@ -35,7 +36,7 @@ import Appointment from './components/update/AppointmentPatient';
 import MedAppointements from './pages/Entités/MedAppointements';
 
 import AppointmentPatient from './components/update/AppointmentPatient';
-
+import TodayConsultations from './pages/Entités/TodayConsultations';
 
 
 // app.js fichier
@@ -70,6 +71,9 @@ function App() {
                 {/* recement ajouté */}
 
                 <Route path='appointment/currentmedecin/' element={<MedAppointements />} />
+                <Route path='currentdoctor/todayvisits/' element={<TodayConsultations />} />
+{/* les patients du docteur */}
+                <Route path='Mypatients' element={<MedPatients />} />
 
                 <Route path='secretaires' element={<Secretaires />} />
                 <Route path='visits' element={<Consultations />} />
