@@ -33,6 +33,7 @@ import MedecinRdv from './pages/Entités/MedecinRdv';
 import PatientRdv from './pages/Entités/PatientRdv';
 import AppointmentPatient from './components/update/AppointmentPatient';
 import TodayConsultations from './pages/Entités/TodayConsultations';
+import MedAppointements from './pages/Entités/MedAppointements';
 
 
 // app.js fichier

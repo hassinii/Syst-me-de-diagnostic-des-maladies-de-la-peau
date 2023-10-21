@@ -292,7 +292,7 @@ function MedPatients() {
 
         <div className='dashboard-content-container'>
           <div className='dashboard-content-header'>
-            <h4>MedPatients List</h4>
+            <h4>Patients List</h4>
             <div className='dashboard-content-search'>
               <input
                 type='text'
