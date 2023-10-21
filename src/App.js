@@ -31,10 +31,6 @@ import MedecinsUp from './components/test';
 
 import MedecinRdv from './pages/Entités/MedecinRdv';
 import PatientRdv from './pages/Entités/PatientRdv';
-
-import Appointment from './components/update/AppointmentPatient';
-import MedAppointements from './pages/Entités/MedAppointements';
-
 import AppointmentPatient from './components/update/AppointmentPatient';
 import TodayConsultations from './pages/Entités/TodayConsultations';
 
@@ -66,7 +62,6 @@ function App() {
 
                 <Route path='appointment/medecin/:_id' element={<MedecinRdv />} />
                 <Route path='appoitment/patient/:_id' element={<PatientRdv />} />
-                {/* <Route path='appointment/patient/:user_id' element={AppointmentPatient} /> */}
                 
                 {/* recement ajouté */}
 
@@ -74,6 +69,9 @@ function App() {
                 <Route path='currentdoctor/todayvisits/' element={<TodayConsultations />} />
 {/* les patients du docteur */}
                 <Route path='Mypatients' element={<MedPatients />} />
+
+                {/* <Route path='appointment/currentmedecin/' element={<MedAppointements />} /> */}
+
 
                 <Route path='secretaires' element={<Secretaires />} />
                 <Route path='visits' element={<Consultations />} />

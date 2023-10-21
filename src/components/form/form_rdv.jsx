@@ -36,6 +36,7 @@ function Form_rdv() {
     const [timesExclude, setTimeExclude] = useState([])
     const [selectedTimeSlot, setSelectedTimeSlot] = useState();
     const navigate = useNavigate();
+    const [message , setMessage] = useState("")
 
 
     useEffect(() => {
