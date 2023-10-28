@@ -11,15 +11,20 @@ import { faEdit, faTrashAlt, faClipboardUser, faLungsVirus } from '@fortawesome/
 import Form_detail_diagnostic from '../../components/form/form_chart_diagnostic';
 import Form_valide_diagnostic from '../../components/form/form_valide_diagnostic';
 import Transition from '../../constants/transition';
-import { fetchDiagnostic } from '../../components/fetchElement/fetchDiagnostic';
+import { fetchDiagnostic,fetchConsultationDiagnostic } from '../../components/fetchElement/fetchDiagnostic';
 import Form_diagnostics from '../../components/form/form_diagnostics';
 import { Table } from 'react-bootstrap';
 import Form__delete_diagnostic from '../../components/form/form_delete_diagnostic';
-
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
+// import $ from 'jquery';
+import Typography from '@mui/material/Typography';
 
 
 function Diagnostics() {
-    const { diagnostics, diagnostic } = useUserData();
+    // const { diagnostics, diagnostic } = useUserData();
+    const [diagnostics, setDiagnostics] = useState([]);
+    const { diagnostic } = useUserData();
     const [search, setSearch] = useState('');
     const [page, setPage] = useState(1);
     const [pagination, setPagination] = useState([]);
@@ -32,6 +37,26 @@ function Diagnostics() {
     const { consultation, path, updateDiagnostic } = useUserData();
     const [details, setDetails] = useState([]);
     const [typeGraph, setTypeGraph] = useState("column");
+    const [showProgress, setShowProgress] = useState(true);
+    const [showText, setShowText] = useState(false);
+
+    useEffect(() => {
+        const timeout = setTimeout(() => {
+        setShowProgress(false);
+        setShowText(true);
+      }, 100000); 
+      return () => {
+        clearTimeout(timeout); 
+      };
+    }, []);
+
+    useEffect(() => {
+        
+        const consultation_id = localStorage.getItem('consultation_id'); // Retrieve from localStorage
+        if (consultation_id) {
+            fetchConsultationDiagnostic(path, consultation_id, setDiagnostics);//setDiagnostics
+        }
+    }, [path]);
 
     useEffect(() => {
         setPagination(calculateRange(diagnostics, 5));
@@ -45,7 +70,7 @@ function Diagnostics() {
             let search_results = diagnostics.filter(
                 (diagnostic) =>
                     diagnostic.dateDiagnostic.toLowerCase().includes(search.toLowerCase()) ||
-                    diagnostic.maladie.nom.toLowerCase().includes(search.toLowerCase())
+                    diagnostic.maladie?.nom.toLowerCase().includes(search.toLowerCase())
             );
             setfilteredDiagnostics(search_results);
         } else {
@@ -123,7 +148,7 @@ function Diagnostics() {
                 </div>
                 <div className='dashboard-content-container'>
                     <div className='dashboard-content-header'>
-                        <h2><span style={{ color: 'gray', fontFamily: 'initial' }}>{consultation.rdv.patient.nom} {consultation.rdv.patient.prenom}</span> Diagnostic List</h2>
+                        <h2><span style={{ color: 'gray', fontFamily: 'initial' }}>{consultation?.rdv?.patient?.nom} {consultation?.rdv?.patient?.prenom}</span> Diagnostic List</h2>
                         <div className='dashboard-content-search'>
                             <input
                                 type='text'
@@ -208,14 +233,28 @@ function Diagnostics() {
                             ))}
                         </div>
                     ) : (
-                        <div className='dashboard-content-footer'>
-                            <span className='empty-table'>No data</span>
-                        </div>
-                    )}
-                </div>
-                {modalIsOpen && <Form_diagnostics open={modalIsOpen} consult_id={consultation._id} />}
+                        // <div className='dashboard-content-footer'>
+                        //   <span className='empty-table'>No data</span>
+                        // </div>
+            
+                        <div className="text-center">
+                                {showProgress && (
+                                    <Box sx={{ display: 'flex' }}>
+                                    <CircularProgress />
+                                    </Box>
+                                )}
+                                                {showText && <Box display="flex" justifyContent="center">
+                                    <Typography variant="body1">
+                                    Le chargement est terminé ! Aucune information trouvée
+                                    </Typography>
+                                    </Box>
+                                    }
+                                            </div>
+                            )}
+                    </div>
+                {modalIsOpen && <Form_diagnostics open={modalIsOpen} consult_id={consultation?._id} />}
 
-                {modalIsOpen2 && <Form_diagnostics open={modalIsOpen2} consult_id={consultation._id} diagnosticToUpdate={diagnostic} />}
+                {modalIsOpen2 && <Form_diagnostics open={modalIsOpen2} consult_id={consultation?._id} diagnosticToUpdate={diagnostic} />}
                 {modalIsOpen3 && <Form__delete_diagnostic open={modalIsOpen3} diagnosticToDelete={diagnostic} />}
                 {modalIsOpen4 && <Form_detail_diagnostic open={modalIsOpen4} details={details} type={typeGraph} diagnostic={diagnostic} />}
                 {modalIsOpen5 && <Form_valide_diagnostic open={modalIsOpen5} diagnostic={diagnostic} />}

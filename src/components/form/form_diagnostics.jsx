@@ -111,9 +111,10 @@ function Form_diagnostics({ open, consult_id, diagnosticToUpdate }) {
                 setErrorMessage("")
                 try {
                     const token = localStorage.getItem('token');
+                    const consultation_id= localStorage.getItem('consultation_id');
                     axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
                     const response = await axios.post(
-                        `${path}/api/diagnostic/create/${consult_id}`,
+                        `${path}/api/diagnostic/create/${consultation_id}`,
                         {
                             "descripSymptome": symptomes
                         }
