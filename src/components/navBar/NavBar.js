@@ -79,6 +79,7 @@ function NavBar() {
                 Login
               </NavLink>
             </li>
+            //
             :
             <li className="nav-item">
             <button className="btn-logout" onClick={handleShow}>
