@@ -9,6 +9,10 @@ import ModalLogout from "../update/ModalLogout";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
+import Navbar from 'react-bootstrap/Navbar';
+import Nav from 'react-bootstrap/Nav';
+
+
 function NavBar() {
   const [click, setClick] = useState(false);
   const {isLoggedIn} = useAuth()
@@ -94,6 +98,9 @@ function NavBar() {
           </div>
         </div>
       </nav>
+
+
+
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>

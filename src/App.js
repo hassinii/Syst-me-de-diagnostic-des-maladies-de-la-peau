@@ -50,7 +50,7 @@ function App() {
             <Routes>
             <Route path='/forget-password' element={<ForgetPass/>} />
             <Route path='/change-password/:token' element={<NewPasseword/>} />
-              <Route path='/' element={<Home />} />
+              <Route path='/' element={<Login />} />
               <Route path='/testing' element={<MedecinsUp/>} />
 
               <Route path='/login' element={<Login />} />
