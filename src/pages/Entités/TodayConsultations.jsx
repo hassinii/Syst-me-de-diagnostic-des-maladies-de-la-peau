@@ -179,13 +179,13 @@ function TodayConsultations() {
                     </td>
                     <td>
                       <span>
-                        <button className='elt-btn btn btn-danger display-flex' title='deletion' onClick={() => fdelete(consultation._id)}>
+                        <button className='btn btn-danger display-flex p-1' title='deletion' onClick={() => fdelete(consultation._id)}>
                           <FontAwesomeIcon icon={faTrashAlt} />
                         </button>
                       </span>
                       {userData.role.includes('medecin') && !userData.role.includes('admin') && (
                         <span>
-                          <button className='elt-btn btn btn-dark' title='diagnostics' onClick={() => fdiagnostics(consultation._id)}>
+                          <button className='btn btn-dark display-flex p-1 m-1' title='diagnostics' onClick={() => fdiagnostics(consultation._id)}>
                             <FontAwesomeIcon icon={faClipboardUser} />
                           </button>
                         </span>
