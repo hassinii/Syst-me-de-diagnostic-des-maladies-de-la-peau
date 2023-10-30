@@ -11,11 +11,20 @@ import { faEdit, faTrashAlt, faClipboardUser, faSuitcaseMedical, faLungsVirus } 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link, Navigate } from 'react-router-dom';
 import logo from '../../assets/Maladie-de-peau.jpg'
-import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import ModalLogout from './ModalLogout'
+import Button from '@mui/material/Button';
+import Form_diagnostics from '../form/form_diagnostics'
+import Form_detail_diagnostic from '../form/form_chart_diagnostic'
 
 export default function PatientConsultation() {
+    const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [modalIsOpen2, setModalIsOpen2] = useState(false);
+    const [modalIsOpen3, setModalIsOpen3] = useState(false);
+    const [modalIsOpen4, setModalIsOpen4] = useState(false);
+    const [modalIsOpen5, setModalIsOpen5] = useState(false);
+    const [details, setDetails] = useState([]);
+
     const [data, setData] = useState([])
     const [filtredData, setFiltredData] = useState([])
     const { consultation, userData, path ,updateDiagnostics} = useUserData();
@@ -27,6 +36,8 @@ export default function PatientConsultation() {
 
       useEffect(() =>{
         if(params._id && params.consultation_id){
+            const token = localStorage.getItem('token');
+            axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
             let response = axios.get(`${path}/api/consultations/diagnostics/${params.consultation_id}`).
             then((response) =>{
                 setData(response.data)
@@ -37,18 +48,12 @@ export default function PatientConsultation() {
 
       },[params._id,params.consultation_id])
 
-      const transformDate = (date) =>{
-        const fullDate = new Date(date);
-        const formattedDate = fullDate.toLocaleString('en-US', {
-          weekday: 'short',
-          day: '2-digit',
-          month: 'short',
-          year: 'numeric',
-          hour: '2-digit',
-          minute: '2-digit',
-          hour12: false,
-        });
-        return formattedDate;
+      const transformDate = (dateString)=> {
+        const date = new Date(dateString);
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        return `${year}/${month}/${day}`;
       }
       const handleFilter = (event) => {
         const searchValue = event.target.value.toLowerCase();
@@ -86,22 +91,35 @@ export default function PatientConsultation() {
     console.log("delete rdv "+id);
   }
 
-  const toDiagnostic = (id) =>{
-    console.log(id);
-  }
+
 
   const deleteConsultation =()=>{
     setShow(!show)
   }
   const ConfirmDelete = () =>{
-
+    console.log("delete");
   }
 
+  const validerDiagnostics = () =>{
+    console.log("valider");
+  }
 
+  const detailsDiagnostics =() =>{
+    console.log("Details diagnostics");
+  }
+
+  const editDiagnostics = () =>{
+    console.log("edit ...");
+  }
+
+  const fNewDiagnostic = () => {
+    modalIsOpen ? setModalIsOpen(false) : setModalIsOpen(true);
+}
   
   return (
     <>
-    <h4 className='m-3'>Diagnostics list</h4>
+    <button className='btn btn-primary m-2 btn-sm btn-block' style={{width:"100px"}} onClick={fNewDiagnostic}>New diagnostic</button>
+    <h4 className=''>Diagnostics list</h4>
     <div className='d-flex justify-content-end'>
       <input type='text' placeholder='Search...' className='p-1 m-2' onChange={handleFilter}/>
     </div>
@@ -130,7 +148,7 @@ export default function PatientConsultation() {
                       {userData.role.includes('medecin') && !userData.role.includes('admin') && (
                         <>
                             <span>
-                                <button className=' btn btn-primary m-1' title='edit' onClick={() => console.log("edit")}>
+                                <button className=' btn btn-primary m-1' title='edit' onClick={() => editDiagnostics()}>
                                     <FontAwesomeIcon icon={faEdit} />
                                 </button>
                             </span>
@@ -140,12 +158,12 @@ export default function PatientConsultation() {
                                 </button>
                             </span>
                             <span>
-                                <button className='btn btn-dark m-1' title='details of the diagnostic' onClick={() => console.log("details")}>
+                                <button className='btn btn-dark m-1' title='details of the diagnostic' onClick={() => detailsDiagnostics()}>
                                     <FontAwesomeIcon icon={faClipboardUser} />
                                 </button>
                             </span>
                             <span>
-                                <button className='btn btn-success m-1' title='valider diagnostic' onClick={() => console.log("valider")}>
+                                <button className='btn btn-success m-1' title='validate diagnosis' onClick={() => validerDiagnostics()}>
                                     <FontAwesomeIcon icon={faLungsVirus} />
                                 </button>
                             </span>
@@ -159,7 +177,7 @@ export default function PatientConsultation() {
               : (
                 loading && (
                   <tr>
-                      <td colSpan="5">
+                      <td colSpan="6">
                         <Box sx={{ display: 'flex', alignItems: "center", justifyContent: "center" }} className="text-center">
                           <CircularProgress />
                         </Box>
@@ -187,6 +205,10 @@ export default function PatientConsultation() {
           </Button>
         </Modal.Footer>
       </Modal>
+
+      {modalIsOpen && <Form_diagnostics open={modalIsOpen} consult_id={consultation?._id} />}
+      {/* {modalIsOpen4 && <Form_detail_diagnostic open={modalIsOpen4} details={[]} type="column" diagnostic={[]} />} */}
+
     </>
   )
 }

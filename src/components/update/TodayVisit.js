@@ -29,6 +29,8 @@ export default function TodayVisit() {
 
       useEffect(() =>{
         if(_id){
+            const token = localStorage.getItem('token');
+            axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
             let response = axios.get(`${path}/api/visite/dermatolog/today/${_id}`)
             .then(response =>{
               setLoading(false)
@@ -48,18 +50,12 @@ export default function TodayVisit() {
 
       },[_id])
 
-      const transformDate = (date) =>{
-        const fullDate = new Date(date);
-        const formattedDate = fullDate.toLocaleString('en-US', {
-          weekday: 'short',
-          day: '2-digit',
-          month: 'short',
-          year: 'numeric',
-          hour: '2-digit',
-          minute: '2-digit',
-          hour12: false,
-        });
-        return formattedDate;
+      const transformDate = (dateString)=> {
+        const date = new Date(dateString);
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        return `${year}/${month}/${day}`;
       }
       const handleFilter = (event) => {
         const searchValue = event.target.value.toLowerCase();

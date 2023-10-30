@@ -84,18 +84,12 @@ export default function MedAppointements() {
         
       
 
-      const transformDate = (date) =>{
-        const fullDate = new Date(date);
-        const formattedDate = fullDate.toLocaleString('en-US', {
-          weekday: 'short',
-          day: '2-digit',
-          month: 'short',
-          year: 'numeric',
-          hour: '2-digit',
-          minute: '2-digit',
-          hour12: false,
-        });
-        return formattedDate;
+      const transformDate = (dateString)=> {
+        const date = new Date(dateString);
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        return `${year}/${month}/${day}`;
       }
       const handleFilter = (event) => {
         const searchValue = event.target.value.toLowerCase();
@@ -140,7 +134,7 @@ export default function MedAppointements() {
             {/* <th>Doctor</th> */}
             <th>Phone</th>
             <th>date</th>
-            {/* <th>Hour</th> */}
+            <th>Hour</th>
             <th>Statut</th>
           </thead>
 
@@ -153,6 +147,7 @@ export default function MedAppointements() {
                     {/* <td>{item.doctor}</td> */}
                     <td>{item.patient.tel}</td>
                     <td>{transformDate(item.dateDebutRdv)}</td>
+                    <td>{new Date(item.dateDebutRdv).getHours()-1}:{new Date(item.dateDebutRdv).getMinutes() == 0 ? "00" :new Date(item.dateDebutRdv).getMinutes()  }</td>
                     {item.statut == false ?
                     <td>waiting</td>
                     :
