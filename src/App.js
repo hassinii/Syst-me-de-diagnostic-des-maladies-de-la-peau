@@ -34,6 +34,8 @@ import PatientRdv from './pages/Entités/PatientRdv';
 import AppointmentPatient from './components/update/AppointmentPatient';
 import TodayConsultations from './pages/Entités/TodayConsultations';
 import MedAppointements from './pages/Entités/MedAppointements';
+import TodayVisit from './components/update/TodayVisit';
+import PatientConsultation from './components/update/PatientConsultation';
 
 
 // app.js fichier
@@ -55,6 +57,7 @@ function App() {
 
               <Route path='/login' element={<Login />} />
               <Route path='/hassini' element={<Test/>}/>
+              
               <Route path='/dashboard/*' element={<Dashboard />}>
                 <Route index element={<DashboardInfos />} />
                 <Route path='patients' element={<Patients />} />
@@ -64,14 +67,22 @@ function App() {
                 <Route path='appointment/medecin/:_id' element={<MedecinRdv />} />
                 <Route path='appoitment/patient/:_id' element={<PatientRdv />} />
                 
-                {/* recement ajouté */}
 
                 <Route path='appointment/currentmedecin/' element={<MedAppointements />} />
-                <Route path='currentdoctor/todayvisits/' element={<TodayConsultations />} />
-{/* les patients du docteur */}
+
+
+                
+                <Route path='currentdoctor/todayvisits/' element={<TodayVisit />} />
+                {/* <Route path='currentdoctor/todayvisits/' element={<TodayConsultations />} /> */}
+
+
+                <Route path='user/:_id/diagnostic/:consultation_id/' element={<PatientConsultation/>}/>
+                {/* <Route path='user/:_id/diagnostic/:consultation_id/' element={<TodayConsultations/>}/> */}
+
+
+
                 <Route path='Mypatients' element={<MedPatients />} />
 
-                {/* <Route path='appointment/currentmedecin/' element={<MedAppointements />} /> */}
 
 
                 <Route path='secretaires' element={<Secretaires />} />

@@ -1,27 +1,35 @@
+import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
-function ModalLogout() {
+function ModalLogout({ title, text, canShow }) {
+
+  const [click, setClick] = useState(false);
+  const handleClick = () => setClick(!click);
+
+  const [show, setShow] = useState(canShow);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  const handleDelete = () => {
+    console.log("delete");
+  }
+  
   return (
-    <div
-      className="modal show"
-      style={{ display: 'block', position: 'initial' }}
-    >
-      <Modal.Dialog>
-        <Modal.Header closeButton>
-          <Modal.Title>Log out ?</Modal.Title>
-        </Modal.Header>
-
-        <Modal.Body>
-          <p>Are you sure ?.</p>
-        </Modal.Body>
-
-        <Modal.Footer>
-          <Button variant="secondary">Close</Button>
-          <Button variant="primary">logout</Button>
-        </Modal.Footer>
-      </Modal.Dialog>
-    </div>
+    <Modal show={show} onHide={handleClose}>
+      <Modal.Header closeButton>
+        <Modal.Title>{title}</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>{text}</Modal.Body>
+      <Modal.Footer>
+        <Button variant="secondary" onClick={handleClose}>
+          Close
+        </Button>
+        <Button variant="danger" onClick={handleDelete}>
+          Delete
+        </Button>
+      </Modal.Footer>
+    </Modal>
   );
 }
 
