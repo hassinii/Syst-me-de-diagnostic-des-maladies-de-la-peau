@@ -182,75 +182,77 @@ function Form_diagnostics({ open, consult_id, diagnosticToUpdate }) {
 
     return (
         <Modal show={modalIsOpen} onHide={handleCloseModal} size="lg">
-        {ok&&<Loading/>}
-            {!ok&&<form onSubmit={handleSubmit}>
-                <Modal.Header closeButton>
-                    <Modal.Title>DIAGNOSTIC FORM</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    {successMessage && <p className="success-message">{successMessage}</p>}
-                    {errorMessage && <p className="error-message">{errorMessage}</p>}
-                    {diagnosticToUpdate && <>
-                        <div className="form-field" style={{ justifyContent: 'space-between' }}>
-                            <label>DISEASE DESCRIPTION</label>
-                            <input
-                                type="text"
-                                name="description"
-                                value={description}
-                                onChange={handleInputChange}
-                                required
-                            />
-                        </div>
-                        <div className="form-field" style={{ justifyContent: 'space-between' }}>
-                            <label>REQUIREMENT</label>
-                            <textarea
-                                type="text"
-                                name="prescription"
-                                value={prescription}
-                                onChange={handleInputChange}
-                                with={150}
-                            />
-                        </div>
-                    </>}
-                    {!diagnosticToUpdate &&
-                        <div className="form-field" style={{ justifyContent: 'space-between' }}>
-                            <h4>Choose symptoms : </h4>
-                            <Select
-                                options={symptoms}
-                                value={descripSymptome}
-                                onChange={handleSelectChange}
-                                isMulti
-                                isSearchable
-                                placeholder="Select symptoms..."
-                            />
-                            <ul>
-                                {descripSymptome && descripSymptome.map((option) => (
-                                    <li key={option.value}>{option.label}</li>
-                                ))}
-                            </ul>
-                        </div>}
+  {ok && <Loading />}
+  {!ok && (
+    <form onSubmit={handleSubmit}>
+      <Modal.Header closeButton>
+        <Modal.Title>{diagnosticToUpdate ? 'EDIT DIAGNOSTIC' : 'CREATE DIAGNOSTIC'}</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        {successMessage && <p className="alert alert-success">{successMessage}</p>}
+        {errorMessage && <p className="alert alert-danger">{errorMessage}</p>}
+        {diagnosticToUpdate && (
+          <>
+            <div className="form-field">
+              <label>DISEASE DESCRIPTION</label>
+              <input
+                type="text"
+                name="description"
+                value={description}
+                onChange={handleInputChange}
+                required
+              />
+            </div>
+            <div className="form-field">
+              <label>REQUIREMENT</label>
+              <textarea
+                type="text"
+                name="prescription"
+                value={prescription}
+                onChange={handleInputChange}
+                rows={4} // Specify the number of rows for the textarea
+              />
+            </div>
+          </>
+        )}
+        {!diagnosticToUpdate && (
+          <>
+            <div className="form-field">
+              <h4>Choose symptoms:</h4>
+              <Select
+                options={symptoms}
+                value={descripSymptome}
+                onChange={handleSelectChange}
+                isMulti
+                isSearchable
+                placeholder="Select symptoms..."
+              />
+            </div>
+            <div className="form-field">
+              <label>IMAGE</label>
+              <input
+                type="file"
+                name="image"
+                accept="image/*"
+                onChange={handleInputChange}
+                required
+              />
+            </div>
+          </>
+        )}
+      </Modal.Body>
+      <Modal.Footer>
+        <Button variant="secondary" onClick={handleCloseModal}>
+          Close
+        </Button>
+        <Button id="sub_btn" type="submit" variant="primary"> {/* Added "variant" attribute */}
+          {bouton}
+        </Button>
+      </Modal.Footer>
+    </form>
+  )}
+</Modal>
 
-                    {!diagnosticToUpdate && <div className="form-field" style={{ justifyContent: 'space-between' }}>
-                        <label>IMAGE</label>
-                        <input
-                            type="file"
-                            name="image"
-                            accept="image/*"
-                            onChange={handleInputChange}
-                            required
-                        />
-                    </div>}
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={handleCloseModal}>
-                        Close
-                    </Button>
-                    <Button id="sub_btn" type="submit">
-                        {bouton}
-                    </Button>
-                </Modal.Footer>
-            </form>}
-        </Modal>
     );
 }
 

@@ -13,7 +13,7 @@ import { Link, Navigate } from 'react-router-dom';
 import logo from '../../assets/Maladie-de-peau.jpg'
 import Modal from 'react-bootstrap/Modal';
 import ModalLogout from './ModalLogout'
-import Button from '@mui/material/Button';
+import Button from 'react-bootstrap/Button';
 import Form_diagnostics from '../form/form_diagnostics'
 import Form_detail_diagnostic from '../form/form_chart_diagnostic'
 
@@ -142,7 +142,7 @@ export default function PatientConsultation() {
                     <td>{new Date(item.dateDiagnostic).getHours()-1}:{new Date(item.dateDiagnostic).getMinutes()}</td>
                     <td>{item.maladie.nom}</td>
                     <td>{item.probability}</td>
-                    <td><img src={`${path}/${item.imagePath}`} className='text-center justify-content-center d-flex' width="30px" height="30px"/></td>
+                    <td className='text-center justify-content-center d-flex'><img src={logo} style={{ Width: '30px', height:"45px" }}/></td>
                 
                     <td>
                       {userData.role.includes('medecin') && !userData.role.includes('admin') && (
