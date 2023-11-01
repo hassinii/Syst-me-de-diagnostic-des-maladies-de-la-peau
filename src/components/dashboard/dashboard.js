@@ -120,14 +120,29 @@ function Dashboard() {
   }
 
   return (
-    <Transition>
-      <div className='dashboard-container'>
-      <SideBar menu={sidermenu} />
-      <div className='dashboard-content'>
-        <Outlet />
-      </div>
-    </div>
-  </Transition>
+    <>
+        <Transition>
+          <div className='dashboard-container'>
+          <SideBar menu={sidermenu} />
+          <div className='dashboard-content'>
+            <Outlet />
+          </div>
+        </div>
+      </Transition>
+
+      {/* <div className=''>
+        <div className='row'>
+          <div className='col-2'>
+            <SideBar menu={sidebar_menu}/>
+          </div>
+          <div className='col-10'>
+          <Outlet />
+          </div>
+        </div>
+
+
+      </div> */}
+    </>
   );
 }
 

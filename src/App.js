@@ -36,6 +36,7 @@ import TodayConsultations from './pages/Entités/TodayConsultations';
 import MedAppointements from './pages/Entités/MedAppointements';
 import TodayVisit from './components/update/TodayVisit';
 import PatientConsultation from './components/update/PatientConsultation';
+import Index from './components/update/patient/Index';
 
 
 // app.js fichier
@@ -74,17 +75,12 @@ function App() {
                 
                 <Route path='currentdoctor/todayvisits/' element={<TodayVisit />} />
                 {/* <Route path='currentdoctor/todayvisits/' element={<TodayConsultations />} /> */}
-
-
                 <Route path='user/:_id/diagnostic/:consultation_id/' element={<PatientConsultation/>}/>
                 {/* <Route path='user/:_id/diagnostic/:consultation_id/' element={<TodayConsultations/>}/> */}
 
 
 
                 <Route path='Mypatients' element={<MedPatients />} />
-
-
-
                 <Route path='secretaires' element={<Secretaires />} />
                 <Route path='visits' element={<Consultations />} />
                 <Route path='diagnostics' element={<Diagnostics />} />
@@ -95,6 +91,13 @@ function App() {
                 <Route path='form_rdv' element={<Form_rdv />} />
                 <Route path='maladies' element={<Malades />} />
                 <Route path='agenda' element={<Agenda_medecin />} />
+
+
+
+                 {/* route pour ELBAHJA */}
+                <Route path='patients' element={<Index />} />
+                {/* fin route pour ELBAHJA */}
+
               </Route>
             </Routes>
             </AnimatePresence>
